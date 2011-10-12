@@ -1,0 +1,32 @@
+#!/usr/bin/ruby
+
+# CURSES
+# Pulls a random curse word out of a curses dictionary and displays it on the
+# screen
+
+
+# Some setting defaults:
+@source_name = "curses_standard.dict"
+@infinite = false
+
+
+# Parse command-line arguments for settings:
+unless ARGV.empty?
+  ARGV.each do |arg|
+    if arg == "-f" || arg == "--forever"
+      @infinite = true 
+    elsif arg == "-u" || arg == "--unabridged"
+      @source_name = "curses_unabridged.dict"
+    end
+  end
+end
+
+# Prepare our curse dictionary:
+@source = File.join(File.dirname(__FILE__), @source_name)
+File.open(@source, 'r') {|file| @dict = file.readlines }
+
+begin
+  curse = @dict[ rand(@dict.length) ]
+  puts curse
+  sleep 1 if @infinite
+end while @infinite
