@@ -8,6 +8,7 @@
 # Some setting defaults:
 @source_name = "curses_standard.dict"
 @infinite = false
+@talk = false
 
 
 # Parse command-line arguments for settings:
@@ -17,6 +18,8 @@ unless ARGV.empty?
       @infinite = true 
     elsif arg == "-u" || arg == "--unabridged"
       @source_name = "curses_unabridged.dict"
+    elsif arg == "-s" || arg == "--talk"
+      @talk = true
     end
   end
 end
@@ -26,7 +29,10 @@ end
 File.open(@source, 'r') {|file| @dict = file.readlines }
 
 begin
-  curse = @dict[ rand(@dict.length) ]
-  puts curse
+  curse = @dict[ rand(@dict.length) ].strip
+  print "#{curse} "
+  $stdout.flush
+  `say "#{curse}"` if @talk
   sleep 1 if @infinite
 end while @infinite
+puts 

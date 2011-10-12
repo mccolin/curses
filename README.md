@@ -22,6 +22,9 @@ any frequency. Usage is simple:
 
     > curse                 # Delivers a single, randoms swear word from
                             # the standard dictionary to your output
+    
+    > curse -s              # On an Mac, speaks each curse word over the
+                            # computer speakres as it is encountered
                             
     > curse -f              # Continues to spit out random swear words
                             # each second until the process is killed
@@ -29,8 +32,11 @@ any frequency. Usage is simple:
     > curse -u              # Uses the unabridged, and admittedly more
                             # hilarious swear dictionary
                             
-    > curse -f -u           # Naturally, flows unabridged curses
+You may combine options, as well:
 
+    > curse -f -u           # Naturally, flows unabridged curses
+    
+    > curse -s -f -u        # Turn up the volume and let it rip!
 
 
 ## Dictionaries
