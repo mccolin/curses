@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 
 # CURSES
 # Pulls a random curse word out of a curses dictionary and displays it on the
