@@ -12,17 +12,16 @@
 
 
 # Parse command-line arguments for settings:
-unless ARGV.empty?
-  ARGV.each do |arg|
-    if arg == "-f" || arg == "--forever"
-      @infinite = true 
-    elsif arg == "-u" || arg == "--unabridged"
-      @source_name = "curses_unabridged.dict"
-    elsif arg == "-s" || arg == "--talk"
-      @talk = true
-    end
+ARGV.each do |arg|
+  if arg == "-f" || arg == "--forever"
+    @infinite = true 
+  elsif arg == "-u" || arg == "--unabridged"
+    @source_name = "curses_unabridged.dict"
+  elsif arg == "-s" || arg == "--talk"
+    @talk = true
   end
 end
+
 
 # Prepare our curse dictionary:
 @source = File.join(File.dirname(__FILE__), @source_name)
