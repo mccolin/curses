@@ -34,9 +34,12 @@ any frequency. Usage is simple:
                             
 You may combine options, as well:
 
-    > curse -f -u           # Naturally, flows unabridged curses
+    > curse -fu             # Naturally, flows unabridged curses
     
-    > curse -s -f -u        # Turn up the volume and let it rip!
+    > curse -sfu            # Turn up the volume and let it rip!
+    
+For full usage information, supply the `-h` or `--help` options to the command
+line.
 
 
 ## Dictionaries

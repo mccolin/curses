@@ -4,24 +4,24 @@
 # Pulls a random curse word out of a curses dictionary and displays it on the
 # screen
 
+require "optparse"
 
 # Some setting defaults:
 @source_name = "curses_standard.dict"
 @infinite = false
 @talk = false
 
-
-# Parse command-line arguments for settings:
-ARGV.each do |arg|
-  if arg == "-f" || arg == "--forever"
-    @infinite = true 
-  elsif arg == "-u" || arg == "--unabridged"
-    @source_name = "curses_unabridged.dict"
-  elsif arg == "-s" || arg == "--talk"
-    @talk = true
+optparse = OptionParser.new do |opts|
+  opts.banner = "Curses! Command-Line Swear Words\nUsage: curse [options]"
+  opts.on("-u", "--unabridged", "Use unabridged swear dictionary") { @source_name = "curses_unabridged.dict" }
+  opts.on("-f", "--forever", "Continually output curses in a stream") { @infinite = true }
+  opts.on("-s", "--talk", "Speak the curses as they are output") { @talk = true }
+  opts.on("-h", "--help", "Display this usage screen") do
+    puts opts
+    exit 0
   end
 end
-
+optparse.parse!
 
 # Prepare our curse dictionary:
 @source = File.join(File.dirname(__FILE__), @source_name)
