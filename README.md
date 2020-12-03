@@ -9,7 +9,7 @@ in your terminal.
 
 Have you ever needed a hilarious way to vent after a frustrating client
 call? Does the thought of piping nasty words through `say` over a PA system
-make your giggle? Are you curious as to what combinations of swear words
+make you giggle? Are you curious as to what combinations of swear words
 are frequently filtered from discussion boards?
 
 Then check this out!
@@ -24,7 +24,7 @@ any frequency. Usage is simple:
                             # the standard dictionary to your output
     
     > curse -s              # On an Mac, speaks each curse word over the
-                            # computer speakres as it is encountered
+                            # computer speakers as it is encountered
                             
     > curse -f              # Continues to spit out random swear words
                             # each second until the process is killed

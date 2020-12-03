@@ -5,6 +5,7 @@
 # screen
 
 require "optparse"
+require "./colorize"
 
 # Some setting defaults:
 @source_name = "curses_standard.dict"
@@ -25,13 +26,26 @@ optparse.parse!
 
 # Prepare our curse dictionary:
 @source = File.join(File.dirname(__FILE__), @source_name)
-File.open(@source, 'r') {|file| @dict = file.readlines }
+File.open(@source, 'r') {|file| @dict = file.readlines.map(&:strip).map {|w| [w, 0]}.to_h }
 
+# Allow Ctrl-C to safely terminate script:
+def end_script()
+  n = @dict.values.sum
+  u = @dict.select {|k,v| v > 0 }.count
+  p = (u.to_f / @dict.length * 100).to_i
+  max_word, max_n = @dict.max_by {|k,v| v }
+  puts "\n#{n} total and #{u} unique #{n == 1 ? 'curse' : 'curses'} given (#{p}%). '#{max_word}' given most, #{max_n} #{max_n == 1 ? 'time' : 'times'}.\n\n"
+  exit 0
+end
+trap("SIGINT") { end_script() }
+
+# Perform the cursing:
 begin
-  curse = @dict[ rand(@dict.length) ].strip
-  print "#{curse} "
+  curse = @dict.keys.sample
+  print "#{curse} ".random_color
   $stdout.flush
   `say "#{curse}"` if @talk
+  @dict[curse] += 1
   sleep 1 if @infinite
 end while @infinite
-puts 
+end_script()
